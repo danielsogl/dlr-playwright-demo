@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  playwright:
+    build:
+      context: .
+      dockerfile: Dockerfile.playwright
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npx playwright test
+
+  playwright-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.playwright
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npx playwright test --ui-port=8080 --ui-host=0.0.0.0
